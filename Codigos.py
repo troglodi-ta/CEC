@@ -7,11 +7,11 @@ import treepoem
 
 nombre = argv[1]
 def main():
-    printer_name = win32print.GetDefaultPrinter()
+    printer_name = win32print.GetDefaultPrinter()              # How to reach printer on LPT1 port?
     hDC = win32ui.CreateDC()
     hDC.CreatePrinterDC(printer_name)
 
-    qr = treepoem.generate_barcode(barcode_type='qrcode', data=nombre,)
+    qr = treepoem.generate_barcode(barcode_type='qrcode', data=nombre,)  
     #qr2 = treepoem.generate_barcode(barcode_type='qrcode', data=nombre, )
     #barra = treepoem.generate_barcode(barcode_type='code39', data='12312371289379812',)
     #barra2 = treepoem.generate_barcode(barcode_type='code39', data='12312371289379812',)
