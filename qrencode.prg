@@ -5,7 +5,7 @@ REQUEST HB_CODEPAGE_DEWIN
 *******************************************************************************************************************
 Procedure Main
    parameter numero
-   Local import,cant,dec,idcli,cant2,numfac,cantfac,a, id1, id2,import2, cant3,cant4,dec2,numfac2,cantfac2,idcli2
+   Local import,cant,dec,idcli,cant2,numfac,cantfac,a, id1, id2,import2
    Local tocut := {}
    Local to3 := {}
    Local to2 := {}
@@ -24,51 +24,13 @@ Procedure Main
  if id1 == "a" 
    ** Formato
    qr1 := "000201"
-   ** Metodo de inicio
-   qr1 := qr1 + "010212"
-   ** Moneda de la TX
-   qr1 := qr1 + "5303032"
-   ** Importe de la TX
-   ** numero factura + id cliente
-   numfac := SubStr(tocut,13,7)
-   numfac := AllTrim(Str(val(numfac)))
-   cantfac := AllTrim(str(len(numfac)))
-   idcli := SubStr(tocut, 6, 7)
-   idcli := AllTrim(Str(val(idcli)))   
-   cant2 := AllTrim(str(len(idcli)))
-   qr1 := qr1 + "620201" 
-   
+  
    mk_qrcode(qr1,755,397)   
    EanBarCode(oPrn,187,50,1,to2,HB_ZEBRA_FLAG_CHECKSUM)      
    oPrn:TextOutAt(500, 1600, "*" +to2+ "*")                    
 
  endif
    
- if id1 == "b" 
-    ** Formato
-   qr1 := "000201"
-   ** Metodo de inicio
-   qr1 := qr1 + "010212"
-   ** Moneda de la TX
-   qr1 := qr1 + "5303032"
-   ** Importe de la TX
-   ** numero factura + id cliente
-   numfac := SubStr(tocut,13,7)
-   numfac := AllTrim(Str(val(numfac)))
-   cantfac := AllTrim(str(len(numfac)))
-   idcli := SubStr(tocut, 6, 7)
-   idcli := AllTrim(Str(val(idcli)))   
-   cant2 := AllTrim(str(len(idcli)))
-   qr1 := qr1 + "620201" 
-  
-   EanBarCode(oPrn,187,50,1,to2,HB_ZEBRA_FLAG_CHECKSUM)
-   oPrn:TextOutAt(500, 1600, "*" +to2+ "*")
-   
-   EanBarCode(oPrn,650,423,1,to2,HB_ZEBRA_FLAG_CHECKSUM)
-   mk_qrcode(qr1,755,397)   
-   oPrn:TextOutAt(3160, 4930, "*" +to2+ "*")
-   
- endif  	
  prn_exit()
  Return
 *******************************************************************************************************************
